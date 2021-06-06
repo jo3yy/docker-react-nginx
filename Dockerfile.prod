@@ -1,12 +1,15 @@
-#build/compile the reactApp
-FROM node:alpine
+FROM node:alpine AS builder
 WORKDIR '/app'
 COPY package.json .
-RUN npm i
 COPY . .
-RUN npm run build
+RUN npm i && npm run build
+# RUN npm run build
 
 #placing the compiled files to nginx
-FROM nginx
-EXPOSE 80
-COPY --from=0 /app/build /usr/share/nginx/html
+FROM nginx:alpine
+WORKDIR /usr/share/nginx/html
+RUN rm -rf ./*
+COPY --from=builder /app/build .
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
+
+# COPY --from=builder /app/build /usr/share/nginx/html
