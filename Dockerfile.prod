@@ -1,0 +1,11 @@
+#build/compile the reactApp
+FROM node:alpine
+WORKDIR '/app'
+COPY package.json .
+RUN npm i
+COPY . .
+RUN npm run build
+
+#placing the compiled files to nginx
+FROM nginx
+COPY --from=0 /app/build /usr/share/nginx/html
