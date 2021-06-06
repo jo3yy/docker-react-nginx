@@ -3,7 +3,7 @@ sudo: required
 services:
   - docker
 before_install:
-  - docker build -t jo3yy/docker-react-nginx -f Dockerfile.dev .
+  - docker build -t jo3yy/docker-react-nginx -f Dockerfile.prod .
 script:
   - docker run -e CI=true jo3yy/docker-react-nginx npm run test -- --coverage
 deploy:
