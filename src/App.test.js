@@ -1,4 +1,5 @@
-import { render, screen } from '@testing-library/react';
+// import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { unmountComponentAtNode } from 'react-dom'
 import App from './App';
 
@@ -8,8 +9,8 @@ test('renders without crasking', () => {
   unmountComponentAtNode(div)
 });
 
-test('renders the paragraph', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/Hi there/i);
-  expect(linkElement).toBeInTheDocument();
-});
+// test('renders the paragraph', () => {
+//   render(<App />);
+//   const linkElement = screen.getByText(/Hi there/i);
+//   expect(linkElement).toBeInTheDocument();
+// });
