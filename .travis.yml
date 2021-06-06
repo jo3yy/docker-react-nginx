@@ -6,7 +6,7 @@ before_install:
   - docker build -t jo3yy/docker-react-nginx -f Dockerfile.prod .
 script:
   # - docker run -e CI=true jo3yy/docker-react-nginx npm run test -- --coverage
-  - docker run --rm -p 80:80 jo3yy/docker-react-nginx
+  - docker run -e CI=true jo3yy/docker-react-nginx nginx -g daemon off
 
 deploy:
   provider: heroku
